@@ -22,6 +22,7 @@ app = PactBroker::App.new do | config |
   config.base_equality_only_on_content_that_affects_verification_results = dc.base_equality_only_on_content_that_affects_verification_results
   config.order_versions_by_date = dc.order_versions_by_date
   config.disable_ssl_verification = dc.disable_ssl_verification
+  config.webhook_retry_schedule = ENV.fetch('PACT_BROKER_WEBHOOK_RETRY_SCHEDULE', '3 3 3').split(" ").map { |s| s.to_i }
 end
 
 PactBroker.configuration.load_from_database!
